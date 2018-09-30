@@ -2,18 +2,69 @@ import React from 'react';
 import {connect} from 'dva';
 import {List,Button,InputItem,Picker} from 'antd-mobile';
 import { createForm } from 'rc-form';
-import { district } from 'antd-mobile-demo-data';
+import { routerRedux } from 'dva/router';
 
+import commonCityData from '../../utils/city'
 class AddressEdit extends React.Component{
 
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      commonCityData:[]
+    }
+  }
+
   onCreate = ()=>{
-    this.props.form.validateFields((error, value) => {
-      console.log(value);
+    this.props.form.validateFields((error, params) => {
+      params.districtAddress = params.districtAddress.toString();
+      params.isDefault = 1 ;
+      params.id = '' ;
+      params.fullAddress = params.districtAddress + params.detailAddress ;
+      this.props.dispatch({
+        type:'address/add',
+        payload:params,
+        callback:()=>{
+          this.props.dispatch(routerRedux.goBack())
+        }
+      });
     });
   }
 
 
+  convertCity = data=>{
+    const obj = {} ;
+    obj.label = data.name ;
+    obj.value = data.name ;
+
+    if(data.cityList&&data.cityList.length!=0){
+      obj.children = this.convertCityData(data.cityList) ;
+    }
+    if(data.districtList&&data.districtList.length!=0){
+      obj.children = this.convertCityData(data.districtList) ;
+    }
+    return obj ;
+  }
+
+
+  convertCityData = oldData=>{
+    const array = [] ;
+    for(let d of oldData){
+      array.push(this.convertCity(d));
+    }
+    return array;
+  }
+
+
   componentDidMount(){
+    const cityData = commonCityData.cityData ;
+    const array = this.convertCityData(cityData) ;
+    console.log('array ',JSON.stringify(array));
+    this.setState({
+      commonCityData:array
+    })
+
     const store = this.props.store ;
     if(store.active!=null){
       const editAddress = store.active ;
@@ -31,7 +82,7 @@ class AddressEdit extends React.Component{
     const { getFieldProps } = this.props.form;
     return <div>
       <InputItem
-        {...getFieldProps('userName')}
+        {...getFieldProps('recievName')}
         clear
         placeholder="收件人"
         ref={el => this.autoFocusInst = el}
@@ -46,9 +97,9 @@ class AddressEdit extends React.Component{
 
 
       <Picker extra="省市区县"
-              data={district}
+              data={this.state.commonCityData}
               title="请选择"
-              {...getFieldProps('district', {
+              {...getFieldProps('districtAddress', {
                 initialValue: ['340000', '341500', '341502'],
               })}
               onOk={e => console.log('ok', e)}
@@ -57,19 +108,11 @@ class AddressEdit extends React.Component{
         <List.Item arrow="horizontal">省市区县</List.Item>
       </Picker>
       <InputItem
-        {...getFieldProps('addrDetail')}
+        {...getFieldProps('detailAddress')}
         clear
         placeholder="详细地址"
         ref={el => this.autoFocusInst = el}
       >详细地址</InputItem>
-      <InputItem
-        {...getFieldProps('postcode')}
-        clear
-        placeholder="邮编"
-        ref={el => this.autoFocusInst = el}
-      >邮编</InputItem>
-
-
       <div style={{margin:'auto',marginTop:'40px',width:'95%'}}>
         <Button  type="warning"  onClick={this.onCreate}>确认添加</Button>
       </div>

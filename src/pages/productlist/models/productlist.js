@@ -1,4 +1,5 @@
 import { doExchange, queryProductInfo, queryProductList } from '../services/productlist';
+import { Toast } from 'antd-mobile';
 
 export default {
   namespace: 'productlist',
@@ -7,11 +8,21 @@ export default {
     hotResult: [],
     prefectResult: [],
     activeItem: null,
+    productList:[]
   },
 
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
+        // category
+        if (pathname == '/productlist/page') {
+          const category = query.category;
+          dispatch({
+            type: 'loadMoreData',
+            payload: category,
+          });
+        }
+
         if (pathname == '/productlist/ProductDetail') {
           const productId = query.productId;
           dispatch({
@@ -34,6 +45,19 @@ export default {
   },
 
   effects: {
+    // 查看更多
+    * loadMoreData({payload}, {call, put}) {
+      const res = yield call(queryProductList,{
+        "page": 1,
+        "pageSize": 20,
+        "category": payload
+      })
+      yield put({
+        type:'saveProducts',
+        payload:res.data.content
+      })
+    },
+
     // 兑换商品
     * doExchange({ payload ,callback}, { call, put }) {
       console.log('doExchange');
@@ -42,12 +66,14 @@ export default {
       if(res.status=='ok'){
         callback();
       }
+      else {
+        Toast.info(res.message,1);
+      }
     },
 
     // 获取商品详情
     * fetchProductInfo({ payload }, { call, put }) {
       const res = yield call(queryProductInfo, payload);
-
       yield put({
         type: 'saveItem',
         payload: res.data,
@@ -87,6 +113,13 @@ export default {
 
 
   reducers: {
+    saveProducts(state,action){
+      return {
+        ...state,
+        productList: action.payload,
+      };
+    },
+
     save(state, action) {
       return {
         ...state,

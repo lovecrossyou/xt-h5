@@ -68,7 +68,7 @@ body{
 }
 
 .brandWrapper{
-  height:58px;
+  /*height:58px;*/
   background: #FFFFFF;
   padding:9px 18px;
 }
@@ -105,9 +105,7 @@ body{
   line-height: 44px;
   text-align: center;
   color:rgba(255,255,255,1);
-
-
-
+  font-size: larger;
 }
 
 

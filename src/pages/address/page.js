@@ -15,6 +15,17 @@ const CreateNewAddress = ({onClick}) => {
 }
 
 class AddressList extends React.Component {
+  //点击地址
+
+  onClick = (address)=>{
+    this.props.dispatch({
+      type:'address/saveActive',
+      payload:address
+    });
+    this.props.dispatch(routerRedux.goBack());
+
+  }
+
   // 编辑
   addresseEdit = (address)=>{
     this.props.dispatch({
@@ -22,7 +33,7 @@ class AddressList extends React.Component {
       payload:address
     });
     this.props.dispatch(
-      routerRedux.push('/addressedit')
+      routerRedux.push('/address/AddressEdit')
     );
   }
 
@@ -38,7 +49,7 @@ class AddressList extends React.Component {
       payload:null
     });
     this.props.dispatch(
-      routerRedux.push('addressedit')
+      routerRedux.push('/address/AddressEdit')
     );
   }
 
@@ -47,8 +58,9 @@ class AddressList extends React.Component {
     const store = this.props.store;
     return <div style={{paddingBottom:'60px'}}>
       {
-        store.map((address,index) => {
+        store.list.map((address,index) => {
           return <AddressCell
+            onClick={this.onClick}
             edit={this.addresseEdit}
             del={this.addressDel}
             address={address}
@@ -63,7 +75,7 @@ class AddressList extends React.Component {
 
 export default connect(state=>{
   return {
-    store:state.address.list
+    store:state.address
   }
 })(AddressList);
 

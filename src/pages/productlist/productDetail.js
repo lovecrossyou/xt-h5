@@ -4,15 +4,14 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './page.css';
-import { Toast, Modal } from 'antd-mobile';
+import { routerRedux } from 'dva/router';
 
-const alert = Modal.alert;
 
 
 const Footer = ({ item, onClick }) => {
   return <div className={styles.footer}>
     <div className={styles.footerL}>
-      <div style={{ padding: '6px' }}>
+      <div style={{ padding: '10px 6px' }}>
         <div className={styles.market}>单价：</div>
         <div className={styles.price}>{item.price}</div>
         <div className={styles.label}>积分</div>
@@ -24,27 +23,8 @@ const Footer = ({ item, onClick }) => {
 
 class ProductDetail extends React.Component {
   exchange = () => {
-    alert('确认兑换', '兑换?', [
-      { text: '取消', onPress: () => console.log('cancel') },
-      {
-        text: '确认', onPress: () => {
-          const activeItem = this.props.store.activeItem;
-          const params = {
-            shopId: activeItem.shopId,
-            productId: activeItem.id,
-            addressId: 1,
-          };
-
-          this.props.dispatch({
-            type: 'productlist/doExchange',
-            payload: params,
-            callback: () => {
-              Toast.success('兑换成功!', 1);
-            },
-          });
-        },
-      },
-    ]);
+    const activeItem = this.props.store.activeItem;
+    this.props.dispatch(routerRedux.push('/order/orderConfirm?productId=' + activeItem.id));
   };
 
 
@@ -52,9 +32,6 @@ class ProductDetail extends React.Component {
 
     const activeItem = this.props.store.activeItem;
     if (activeItem == null) return null;
-
-    console.log(activeItem);
-
     const price = activeItem.price * 1.2;
     const salePrice = price.toFixed(2);
     return <div style={{ paddingBottom: '50px' }}>
@@ -76,17 +53,22 @@ class ProductDetail extends React.Component {
 
       <div className={styles.descWrapper}>商品描述</div>
       <div className={styles.brandWrapper}>
-        <div className={styles.desc}>品名：--</div>
-        <div className={styles.desc}>品牌：--</div>
+        <div className={styles.desc}>品名：{activeItem.headName}</div>
+        <div className={styles.desc}>品牌：{activeItem.brand}</div>
       </div>
-
-      <img src={activeItem.detailImage} alt="" style={{
-        margin: 'auto',
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#e2e2e2',
-      }}/>
-
+      {
+        activeItem.detailImages.map((item,index)=>{
+          return (
+              <img key={"#"+index} src={item} alt="" style={{
+                margin: '0',
+                padding:'0',
+                width: '100%',
+                height: '100%',
+                backgroundColor: '#e2e2e2',
+              }}/>
+          )
+        }
+      )}
       <Footer item={activeItem} onClick={this.exchange}/>
     </div>;
   }

@@ -10,6 +10,8 @@ const {openPages } = config;
 
 
 const Layout = props => {
+  return <div> {props.children}</div>;
+
   if (openPages && openPages.includes(props.pathname)) {
     return <div> {props.children}</div>;
   }
