@@ -119,3 +119,11 @@ body{
 
 
 }
+
+.bigImgWrapper{
+  width: 100%;
+  height: 275px;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+}

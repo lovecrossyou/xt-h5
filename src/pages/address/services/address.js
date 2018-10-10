@@ -13,3 +13,18 @@ export async function queryAddAddress (params) {
     body: params,
   })
 }
+
+
+export async function queryEditAddress (params) {
+  return request('/mp/client/deliveryAddress/edit',{
+    method: 'post',
+    body: params,
+  })
+}
+
+export async function queryDelAddress (params) {
+  return request('/mp/client/deliveryAddress/delete',{
+    method: 'post',
+    body: params,
+  })
+}

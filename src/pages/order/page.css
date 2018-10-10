@@ -53,7 +53,7 @@
 .footerR{
   width:50%;
   height:44px;
-  background:rgba(74,144,226,1);
+  background:#cc2636;
   flex: 1;
 
   line-height: 44px;
@@ -81,9 +81,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 20px 10px;
+  padding: 24px 10px;
   background-color: #FFFFFF;
   border-bottom: solid 1px #e1e1e1;
   border-top: solid 1px #e1e1e1;
+  color: #999999;
+  font-size: 20px;
 }
 

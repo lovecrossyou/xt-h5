@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import styles from './page.less';
 import { routerRedux } from 'dva/router';
+import { Toast } from 'antd-mobile';
 
 // 积分商城
 const UserInfo = ({ userInfo }) => {
@@ -65,11 +66,11 @@ const Category = ({ onClick }) => {
 };
 
 
-const CenterView = () => {
+const CenterView = ({leftClick,rightClick}) => {
   return <div
     style={{ display: 'flex', justifyContent: 'space-between', backgroundColor: '#f5f5f5', marginBottom: '15px' }}>
-    <div className={styles.left}></div>
-    <div className={styles.right}></div>
+    <div onClick={leftClick} className={styles.left}></div>
+    <div onClick={rightClick} className={styles.right}></div>
   </div>;
 };
 
@@ -77,7 +78,7 @@ const CenterView = () => {
 const Item = ({ item, onClick }) => {
   return <div onClick={() => {
     onClick(item);
-  }} style={{ backgroundColor: '#fff', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+  }} style={{ width: '62px',backgroundColor: '#fff', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
     <img src={item.headImage} alt="" style={{
       width: '62px',
       height: '62px',
@@ -109,7 +110,8 @@ const GuessYouLike = ({ products, onClick, showMore }) => {
       justifyContent: 'space-around',
       marginTop: '17px',
       backgroundColor: '#fff',
-      padding: '15px',
+      // padding: '15px',
+      width:'100%'
     }}>
       {
         products.map((p, index) => <Item key={'#' + index} item={p} onClick={onClick}/>)
@@ -177,6 +179,19 @@ class Points extends React.Component {
     );
   };
 
+  rightClick = ()=>{
+    this.props.dispatch(
+      routerRedux.push('/404')
+    );
+    // Toast.info('即将开放');
+  }
+
+  leftClick = ()=>{
+    this.props.dispatch(
+      routerRedux.push('/404')
+    );
+  }
+
 
   render() {
     const { guestLikeResult, hotResult, prefectResult, userInfo } = this.props.store;
@@ -184,7 +199,7 @@ class Points extends React.Component {
       <UserInfo userInfo={userInfo}/>
       <Banner/>
       <Category onClick={this.goProductList}/>
-      <CenterView/>
+      <CenterView leftClick={this.leftClick} rightClick={this.rightClick}/>
       <GuessYouLike
         showMore={this.showMore}
         products={guestLikeResult}

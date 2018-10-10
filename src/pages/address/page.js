@@ -33,13 +33,16 @@ class AddressList extends React.Component {
       payload:address
     });
     this.props.dispatch(
-      routerRedux.push('/address/AddressEdit')
+      routerRedux.push('/address/AddressEdit?edit=true')
     );
   }
 
   // 删除
-  addressDel = ()=>{
-
+  addressDel = (address)=>{
+    this.props.dispatch({
+      type:'address/delete',
+      payload:address
+    });
   };
 
   // 新建

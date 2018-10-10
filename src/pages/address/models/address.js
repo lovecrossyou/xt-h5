@@ -1,15 +1,23 @@
-import { queryAddAddress, queryAddress } from '../services/address';
+import { queryAddAddress, queryAddress, queryDelAddress, queryEditAddress } from '../services/address';
 
 export default {
   namespace: 'address',
   state: {
     activeAddress: null,
     list: [],
+    edit:false
   },
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
         if (pathname === '/address/AddressEdit') {
+          if(query.edit!=undefined){
+            // 编辑模式
+            dispatch({
+              type:'setEdit',
+              payload:query.edit
+            })
+          }
           dispatch({
             type: 'global/setTitle', payload: {
               text: '地址编辑',
@@ -42,10 +50,15 @@ export default {
       });
     },
     * delete({ payload }, { call, put }) {
+      yield call(queryDelAddress, {
+        addressId: payload.id
+      });
+      const list = yield call(queryAddress, {
+        size: 10,
+        pageNo: 0,
+      });
       yield put({
-        type: 'save', payload: {
-          list: [],
-        },
+        type: 'save', payload: list.data.content,
       });
     },
 
@@ -55,10 +68,13 @@ export default {
       callback();
     },
 
+    * edit({ payload, callback }, { call, put }) {
+      yield call(queryEditAddress, payload);
+      callback();
+    },
 
-    // * saveActive({ payload, callback }, { call, put }) {
-    //   console.log('xxxxss');
-    // },
+
+
   },
   reducers: {
     save(state, action) {
@@ -67,5 +83,12 @@ export default {
     saveActive(state, action) {
       return { ...state, activeAddress: action.payload };
     },
+
+    setEdit(state,action){
+      return {
+        ...state,
+        edit:action.payload
+      }
+    }
   },
 };

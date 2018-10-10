@@ -35,12 +35,12 @@ class ProductDetail extends React.Component {
     const price = activeItem.price * 1.2;
     const salePrice = price.toFixed(2);
     return <div style={{ paddingBottom: '50px' }}>
-      <img src={activeItem.headImage} alt="" style={{
-        margin: 'auto',
-        width: '100%',
-        height: '275px',
-        backgroundColor: '#e2e2e2',
-      }}/>
+     <div className={styles.bigImgWrapper}>
+       <img src={activeItem.headImage} alt="" style={{
+         height: '273px',
+         backgroundColor: '#fff',
+       }}/>
+     </div>
 
       <div className={styles.pWrapper}>
         <div className={styles.pName}>{activeItem.simpleName}</div>

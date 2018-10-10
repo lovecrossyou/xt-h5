@@ -32,6 +32,23 @@ class AddressEdit extends React.Component{
     });
   }
 
+  onUpdate = ()=>{
+    this.props.form.validateFields((error, params) => {
+      const editAddress = this.props.store.activeAddress ;
+      params.districtAddress = params.districtAddress.toString();
+      params.isDefault = 1 ;
+      params.id = editAddress.id ;
+      params.fullAddress = params.districtAddress + params.detailAddress ;
+      this.props.dispatch({
+        type:'address/edit',
+        payload:params,
+        callback:()=>{
+          this.props.dispatch(routerRedux.goBack())
+        }
+      });
+    });
+  }
+
 
   convertCity = data=>{
     const obj = {} ;
@@ -60,21 +77,24 @@ class AddressEdit extends React.Component{
   componentDidMount(){
     const cityData = commonCityData.cityData ;
     const array = this.convertCityData(cityData) ;
-    console.log('array ',JSON.stringify(array));
     this.setState({
       commonCityData:array
     })
 
     const store = this.props.store ;
-    if(store.active!=null){
-      const editAddress = store.active ;
+    if(store.activeAddress&&store.edit){
+      const editAddress = store.activeAddress ;
       this.props.form.setFieldsValue({
-        userName:editAddress.userName,
+        recievName:editAddress.recievName,
         phoneNum:editAddress.phoneNum,
+        detailAddress:editAddress.detailAddress,
       })
     }
+  }
 
-    console.log('componentDidMount ',store);
+  isEdit = ()=>{
+    const store = this.props.store ;
+    return store.activeAddress&&store.edit ;
   }
 
   render(){
@@ -100,7 +120,7 @@ class AddressEdit extends React.Component{
               data={this.state.commonCityData}
               title="请选择"
               {...getFieldProps('districtAddress', {
-                initialValue: ['340000', '341500', '341502'],
+                initialValue: ['请选择地区', '', ''],
               })}
               onOk={e => console.log('ok', e)}
               onDismiss={e => console.log('dismiss', e)}
@@ -114,7 +134,10 @@ class AddressEdit extends React.Component{
         ref={el => this.autoFocusInst = el}
       >详细地址</InputItem>
       <div style={{margin:'auto',marginTop:'40px',width:'95%'}}>
-        <Button  type="warning"  onClick={this.onCreate}>确认添加</Button>
+        {
+          this.isEdit()?(<Button  type="warning"  onClick={this.onUpdate}>更新</Button>):(<Button  type="warning"  onClick={this.onCreate}>确认添加</Button>)
+        }
+
       </div>
     </div>
   }
