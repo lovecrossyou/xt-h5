@@ -17,6 +17,8 @@ function App(props) {
       <Link to="/productlist/page">商品列表</Link>
       <br/>
       <Link to="/address/page">地址列表</Link>
+      <br/>
+      <Link to="/withdraw/page">提现</Link>
     </div>
   );
 }
