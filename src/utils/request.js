@@ -25,26 +25,16 @@ export default async function request(url, options) {
   console.log('request ', url)
 
   const accessToken = getAccessToken();
-  let opt = {
+  const opt = {
+    body: JSON.stringify(options.body),
     headers: {
-      accessToken: accessToken
-    }
+      'accessToken':accessToken,
+      'Content-Type': 'application/json',
+    },
+    method: options.method,
   };
-  if (options != undefined) {
-    opt = {
-      body: JSON.stringify(options.body),
-      headers: {
-        "accessToken": accessToken,
-        "Content-Type": 'application/json'
-      },
-      method: options.method
-    }
-  }
-
-  console.log('opt ', opt)
-  const response = await fetch(config.apiPrefix+url, opt);
-
+  console.log('opt ', opt);
+  const response = await fetch(url, opt);
   checkStatus(response);
-
-  return await response.json();
+  return response.json();
 }
