@@ -1,4 +1,4 @@
-const isMock = true;
+const isMock = false;
 const baseUrlPrefix = isMock?'/api':'';
 module.exports = {
   isMock:isMock,
