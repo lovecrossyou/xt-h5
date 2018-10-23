@@ -41,7 +41,7 @@ class WithDraw extends React.Component {
             placeholder="填写提现数额"
             clear
             moneyKeyboardAlign="left"
-          ><h3>提现金额</h3></InputItem>
+          ><h4>提现金额</h4></InputItem>
         </List>
         <WhiteSpace/>
         <Button onClick={this.withdraw} type="primary">提现</Button>

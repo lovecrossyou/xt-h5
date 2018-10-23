@@ -3,5 +3,8 @@ import {getAccessToken} from "../../../utils/authority";
 
 export async function queryUserInfo() {
   const accessToken = getAccessToken();
-  return request('/mp/service/user/info?accesstoken='+accessToken);
+  return request('/api/mp/service/user/info?accesstoken='+accessToken,{
+    method:'get',
+    body:{}
+  });
 }
