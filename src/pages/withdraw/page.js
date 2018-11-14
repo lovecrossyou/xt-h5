@@ -11,7 +11,6 @@ import DocumentTitle from 'react-document-title';
 
 import styles from './page.css';
 
-import bg_icon from '../../assets/intergral-banner.png'
 
 @createForm()
 class WithDraw extends React.Component {
