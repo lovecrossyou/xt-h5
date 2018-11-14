@@ -5,6 +5,8 @@
 import React from 'react';
 
 import { connect } from 'dva';
+import DocumentTitle from 'react-document-title';
+
 import styles from './page.css'
 
 class WithDrawList extends React.Component {
@@ -14,15 +16,31 @@ class WithDrawList extends React.Component {
       <div>
         {
           withdrawList.map((data,index)=>{
-            return <div>
-              <div className={styles.withdraw}>
-                <div className={styles.withdraw_top}>
-                  <div className={styles.gray}>{data.statusContent}</div>
-                  <div><span  className={styles.updateAmount}>{data.updateAmount}积分</span></div>
-                </div>
-                <div className={styles.withdraw_bot}>{data.createTime}</div>
+            return <DocumentTitle title='提现记录'>
+              <div>
+                <div className={styles.withdraw}>
+                    <div className={styles.r_sp}>
+                      <div>提现状态</div>
+                      <div>{data.statusContent}</div>
+                    </div>
+
+                    <div className={styles.r_sp}>
+                      <div>提现积分</div>
+                      <div className={styles.updateAmount}>-{data.updateAmount}积分</div>
+                    </div>
+
+                    <div className={styles.r_sp}>
+                      <div>到账</div>
+                      <div  className={styles.updateAmount}>+{data.cashAmount/100}元</div>
+                    </div>
+
+                    <div className={styles.r_sp}>
+                      <div>提现时间</div>
+                      <div>{data.createTime}</div>
+                    </div>
+                  </div>
               </div>
-            </div>
+            </DocumentTitle>
           })
         }
       </div>

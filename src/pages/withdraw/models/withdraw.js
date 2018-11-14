@@ -4,8 +4,6 @@ import { Toast } from 'antd-mobile';
 
 import { setAccessToken } from '../../../utils/authority';
 
-const mockToken = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwiaWF0IjoxNTM4MDU2NDQ2LCJzdWIiOiJEWjAwMDAxMTMwIn0.cZ6iiE42AMTrQNuYXWejm8XaTo3sxR87-pBmgj04CmY'
-
 export default {
   namespace: "withdraw",
   state: {
@@ -16,22 +14,11 @@ export default {
       return history.listen(({pathname, query}) => {
         if (pathname === '/withdraw/page') {
           const accessToken = query.accessToken;
-          if(config.isMock){
-            setAccessToken(mockToken)
-          }
-          else {
-            setAccessToken(accessToken)
-          }
+          setAccessToken(accessToken)
         }
         if (pathname === '/withdraw/withdrawrecord') {
           const accessToken = query.accessToken;
-          if(config.isMock){
-            setAccessToken(mockToken)
-          }
-          else {
-            setAccessToken(accessToken)
-          }
-
+          setAccessToken(accessToken)
           dispatch({
             type:'withdrawList',
             payload:{
@@ -54,10 +41,11 @@ export default {
   },
   effects: {
 
-    *withdraw({ type, payload}, { put, call }) {
+    *withdraw({ type, payload,cb}, { put, call }) {
       const res = yield call(queryWithdrawCash,payload);
       if(res.status=='ok'){
-        Toast.info('提现申请已发送',1);
+        Toast.info('提现申请已发送',2);
+        cb&&cb();
       }
       else {
         Toast.info(res.message,1);

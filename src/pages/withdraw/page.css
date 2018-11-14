@@ -7,13 +7,14 @@
 
 
 .withdraw{
-  width: 100%;
-  height: 60px;
+  /*width: 100%;*/
+  height: 90px;
   background-color: #FFFFFF;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  padding: 15px ;
 }
 
 .withdraw_top{
@@ -34,10 +35,30 @@
 .updateAmount{
   font-size: larger;
   color: #cc2636;
-  padding: 0 10px;
+  /*padding: 0 10px;*/
 }
 
 .gray{
   color: #999999;
+}
+
+.top_bg{
+
+}
+
+.r_sp{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.flexr{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tixian_info{
+  width: 100%;
 }
 

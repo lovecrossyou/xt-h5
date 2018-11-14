@@ -198,8 +198,8 @@ class Points extends React.Component {
     return <div style={{ backgroundColor: '#f5f5f5' }}>
       <UserInfo userInfo={userInfo}/>
       <Banner/>
-      <Category onClick={this.goProductList}/>
-      <CenterView leftClick={this.leftClick} rightClick={this.rightClick}/>
+      {/*<Category onClick={this.goProductList}/>*/}
+      {/*<CenterView leftClick={this.leftClick} rightClick={this.rightClick}/>*/}
       <GuessYouLike
         showMore={this.showMore}
         products={guestLikeResult}

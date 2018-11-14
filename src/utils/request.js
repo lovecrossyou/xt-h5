@@ -1,6 +1,6 @@
 import fetch from 'dva/fetch';
-import {getAccessToken} from "./authority";
-import config from './config'
+import { getAccessToken } from './authority';
+import config from './config';
 
 
 function checkStatus(response) {
@@ -22,19 +22,31 @@ function checkStatus(response) {
  */
 export default async function request(url, options) {
 
-  console.log('request ', url)
+  console.log('request ', url);
 
   const accessToken = getAccessToken();
-  const opt = {
-    body: JSON.stringify(options.body),
-    headers: {
-      'accessToken':accessToken,
-      'Content-Type': 'application/json',
-    },
-    method: options.method,
-  };
+  let opt;
+  if (options.method === 'get') {
+    opt = {
+      headers: {
+        'accessToken': accessToken,
+        'Content-Type': 'application/json',
+      },
+      method: options.method,
+    };
+  }
+  else {
+    opt = {
+      body: JSON.stringify(options.body),
+      headers: {
+        'accessToken': accessToken,
+        'Content-Type': 'application/json',
+      },
+      method: options.method,
+    };
+  }
   console.log('opt ', opt);
-  const response = await fetch(url, opt);
+  const response = await fetch(config.apiPrefix+ url, opt);
   checkStatus(response);
   return response.json();
 }
