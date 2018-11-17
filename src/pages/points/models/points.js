@@ -53,29 +53,17 @@ export default {
 
 
     * loadData({payload}, {call, put}) {
-      const [guestLikeResult, hotResult, prefectResult] = yield [
+      const [guestLikeResult] = yield [
         call(queryProductList, {
           "page": 1,
-          "pageSize": 4,
+          "pageSize": 20,
           "category": "guess_like"
         }),
-        call(queryProductList, {
-          "page": 1,
-          "pageSize": 4,
-          "category": "hot_product"
-        }),
-        call(queryProductList, {
-          "page": 1,
-          "pageSize": 3,
-          "category": "prefect_product"
-        })
       ];
 
       yield put({
         type: 'saveData', payload: {
           guestLikeResult:guestLikeResult.data.content,
-          hotResult:hotResult.data.content,
-          prefectResult:prefectResult.data.content,
         }
       });
     }
@@ -93,9 +81,7 @@ export default {
     saveData(state,action){
       return {
         ...state,
-        guestLikeResult: action.payload.guestLikeResult,
-        hotResult: action.payload.hotResult,
-        prefectResult: action.payload.prefectResult,
+        guestLikeResult: action.payload.guestLikeResult
       }
     }
   }

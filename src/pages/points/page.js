@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import styles from './page.less';
 import { routerRedux } from 'dva/router';
 import { Toast } from 'antd-mobile';
+import { PriceLabel } from './components/PriceLabel';
 
 // 积分商城
 const UserInfo = ({ userInfo }) => {
@@ -37,44 +38,6 @@ const Banner = () => {
 };
 
 
-const Category = ({ onClick }) => {
-
-  const Item = ({ title, className }) => {
-    return <div
-      onClick={onClick}
-      style={{ backgroundColor: '#fff', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-      <div className={className}/>
-      <div style={{ textAlign: 'center', height: '24px', lineHeight: '24px' }}>{title}</div>
-    </div>;
-  };
-
-  return <div style={{
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: '17px',
-    marginBottom: '12px',
-    backgroundColor: '#fff',
-    padding: '15px',
-  }}>
-    <Item title='吃行乐' className={styles.eat}/>
-    <Item title='车生活' className={styles.car}/>
-    <Item title='小日常' className={styles.normal}/>
-    <Item title='其他' className={styles.other}/>
-
-  </div>;
-};
-
-
-const CenterView = ({leftClick,rightClick}) => {
-  return <div
-    style={{ display: 'flex', justifyContent: 'space-between', backgroundColor: '#f5f5f5', marginBottom: '15px' }}>
-    <div onClick={leftClick} className={styles.left}></div>
-    <div onClick={rightClick} className={styles.right}></div>
-  </div>;
-};
-
-
 const Item = ({ item, onClick }) => {
   return <div onClick={() => {
     onClick(item);
@@ -94,78 +57,36 @@ const Item = ({ item, onClick }) => {
   </div>;
 };
 
-// 猜你喜欢   热门兑换   精品推荐
-const GuessYouLike = ({ products, onClick, showMore }) => {
-  return <div style={{ backgroundColor: '#fff', marginBottom: '15px' }}>
-    <div className={styles.flexR} style={{ height: '10px', padding: '15px', backgroundColor: '#fff' }}>
-      <div>猜你喜欢</div>
-      <div onClick={() => {
-        showMore('guess_like');
-      }}>更多
-      </div>
-    </div>
-    <div style={{
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      marginTop: '17px',
-      backgroundColor: '#fff',
-      // padding: '15px',
-      width:'100%'
-    }}>
-      {
-        products.map((p, index) => <Item key={'#' + index} item={p} onClick={onClick}/>)
-      }
-    </div>
-  </div>;
-};
 
-// Hot
-const Hot = ({ products, onClick, showMore }) => {
-  return <div style={{ backgroundColor: '#fff', marginBottom: '15px' }}>
-    <div className={styles.flexR} style={{ height: '10px', padding: '15px', backgroundColor: '#fff' }}>
-      <div>热门兑换</div>
-      <div onClick={()=>{
-        showMore('hot_product');
-      }}>更多</div>
-    </div>
-    <div style={{
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      marginTop: '17px',
-      backgroundColor: '#fff',
-      padding: '15px',
+const Product = ({data,onClick})=>{
+  return <div
+    className={styles.product}
+    onClick={()=>{
+      onClick(data);
     }}>
-      {
-        products.map((p, index) => <Item key={'#' + index} item={p} onClick={onClick}/>)
-      }
+    <img src={data.headImage} alt="" className={styles.p_img}/>
+    <div className={styles.p_title}>{data.simpleName}</div>
+    <div className={styles.p_footer}>
+      <PriceLabel prefix='' price={data.price} suffix='M币'/>
+      <div className={styles.p_footer_sale}>已兑换10份</div>
     </div>
-  </div>;
-};
+  </div>
+}
 
-// Local
-const Local = ({ onClick }) => {
-  return <div style={{ height: '255px', backgroundColor: '#fff', marginBottom: '12px' }}>
-    <div onClick={onClick} className={styles.flexR}
-         style={{ height: '10px', padding: '15px', backgroundColor: '#fff' }}>
-      <div>精品推荐</div>
-    </div>
-    <div className={styles.flexR}>
-      <div className={styles.localLeft}></div>
-      <div className={styles.flexC}>
-        <div className={styles.rightTop}></div>
-        <div className={styles.rightBot}></div>
-      </div>
-    </div>
-  </div>;
-};
+const ProductList = ({products,onClick})=>{
+  return <div className={styles.product_list_container}>
+    {
+      products.map((p,index)=>{
+        return <Product
+          onClick={onClick}
+          data={p}
+          key={index+'#'}/>
+      })
+    }
+  </div>
+}
 
 class Points extends React.Component {
-
-  goProductList = () => {
-    this.props.dispatch(routerRedux.push('/productlist'));
-  };
 
   onClick = item => {
     this.props.dispatch(
@@ -173,42 +94,18 @@ class Points extends React.Component {
     );
   };
 
-  showMore = category => {
-    this.props.dispatch(
-      routerRedux.push('/productlist/page?category=' + category),
-    );
-  };
-
-  rightClick = ()=>{
-    this.props.dispatch(
-      routerRedux.push('/404')
-    );
-    // Toast.info('即将开放');
-  }
-
-  leftClick = ()=>{
-    this.props.dispatch(
-      routerRedux.push('/404')
-    );
-  }
-
 
   render() {
-    const { guestLikeResult, hotResult, prefectResult, userInfo } = this.props.store;
+    const { guestLikeResult, userInfo } = this.props.store;
     return <div style={{ backgroundColor: '#f5f5f5' }}>
       <UserInfo userInfo={userInfo}/>
       <Banner/>
-      {/*<Category onClick={this.goProductList}/>*/}
-      {/*<CenterView leftClick={this.leftClick} rightClick={this.rightClick}/>*/}
-      <GuessYouLike
-        showMore={this.showMore}
-        products={guestLikeResult}
-        onClick={this.onClick}/>
-      <Hot
-        products={hotResult}
-        showMore={this.showMore}
-        onClick={this.onClick}/>
-      <Local products={prefectResult} onClick={this.onClick}/>
+      <div>
+        <div className={styles.p_hot}>热门兑换</div>
+        <ProductList
+          onClick={this.onClick}
+          products={guestLikeResult}/>
+      </div>
     </div>;
   }
 }

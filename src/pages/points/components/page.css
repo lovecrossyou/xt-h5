@@ -1,0 +1,21 @@
+.p_price{
+  color: #cc2636;
+  font-size: 19px;
+}
+
+.prefix{
+  font-size: 14px;
+  color: #cc2636;
+}
+
+.suffix{
+  padding-left: 4px;
+  font-size: 14px;
+  color: #cc2636;
+}
+
+.price_label{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
