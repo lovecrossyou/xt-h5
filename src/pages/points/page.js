@@ -68,7 +68,7 @@ const Product = ({data,onClick})=>{
     <div className={styles.p_title}>{data.simpleName}</div>
     <div className={styles.p_footer}>
       <PriceLabel prefix='' price={data.price} suffix='M币'/>
-      <div className={styles.p_footer_sale}>已兑换10份</div>
+      <div className={styles.p_footer_sale}>已兑换{data.saleAmount}份</div>
     </div>
   </div>
 }
