@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'dva';
 import styles from './page.less';
 import { routerRedux } from 'dva/router';
-import { Toast } from 'antd-mobile';
 import { PriceLabel } from './components/PriceLabel';
+import { ActivityIndicator } from './components/ActivityIndicator';
 
 // 积分商城
 const UserInfo = ({ userInfo }) => {
@@ -33,7 +33,7 @@ const UserInfo = ({ userInfo }) => {
 
 const Banner = () => {
   return <div className={styles.banner}>
-
+    <img className={styles.banner_img} src="http://static.tuexing.com/guanggaotu_xiangyun.jpg" alt=""/>
   </div>;
 };
 
@@ -106,10 +106,12 @@ class Points extends React.Component {
           onClick={this.onClick}
           products={guestLikeResult}/>
       </div>
+      <ActivityIndicator animating={this.props.loading}/>
     </div>;
   }
 }
 
 export default connect(state => ({
   store: state.points,
+  loading:state.loading.global
 }))(Points);

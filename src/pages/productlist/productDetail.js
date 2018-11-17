@@ -5,7 +5,7 @@ import React from 'react';
 import { connect } from 'dva';
 import styles from './page.css';
 import { routerRedux } from 'dva/router';
-
+import { ActivityIndicator } from '../points/components/ActivityIndicator';
 
 
 const Footer = ({ item, onClick }) => {
@@ -29,7 +29,6 @@ class ProductDetail extends React.Component {
 
 
   render() {
-
     const activeItem = this.props.store.activeItem;
     if (activeItem == null) return null;
     const price = activeItem.price * 1.2;
@@ -41,7 +40,6 @@ class ProductDetail extends React.Component {
          backgroundColor: '#fff',
        }}/>
      </div>
-
       <div className={styles.pWrapper}>
         <div className={styles.pName}>{activeItem.simpleName}</div>
         <div>
@@ -50,7 +48,6 @@ class ProductDetail extends React.Component {
           <div className={styles.market}>市场参考价：{salePrice}元</div>
         </div>
       </div>
-
       <div className={styles.descWrapper}>商品描述</div>
       <div className={styles.brandWrapper}>
         <div className={styles.desc}>品名：{activeItem.headName}</div>
@@ -70,6 +67,7 @@ class ProductDetail extends React.Component {
         }
       )}
       <Footer item={activeItem} onClick={this.exchange}/>
+      <ActivityIndicator animating={this.props.loading}/>
     </div>;
   }
 }
@@ -77,5 +75,6 @@ class ProductDetail extends React.Component {
 // products
 export default connect(state => ({
   store: state.productlist,
+  loading:state.loading.global
 }))(ProductDetail);
 
