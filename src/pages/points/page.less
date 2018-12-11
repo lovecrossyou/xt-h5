@@ -6,16 +6,11 @@
 }
 
 .banner_img{
-  //width: 100%;
-  height: 180px;
+  width: 100%;
+  //height: 180px;
 }
 
-.eat {
-  height: 62px;
-  width: 62px;
-  background: url(../../assets/eat.png) no-repeat center 0;
-  background-size: 62px 62px;
-}
+
 
 .car {
   height: 62px;
@@ -24,20 +19,8 @@
   background-size: 62px 62px;
 }
 
-.normal{
-  height: 62px;
-  width: 62px;
-  background: url(../../assets/normal.png) no-repeat center 0;
-  background-size: 62px 62px;
-}
 
 
-.other {
-  height: 62px;
-  width: 62px;
-  background: url(../../assets/other.png) no-repeat center 0;
-  background-size: 62px 62px;
-}
 
 
 .flexR{
@@ -59,55 +42,24 @@
 }
 
 
-.left{
-  width: 100%;
-  height: 100px;
-  background: url(../../assets/left.png) no-repeat center 0;
-  background-size: 100% 100px;
-  margin-right: 10px;
-}
-
-.right{
-  width: 100%;
-  height: 100px;
-  background: url(../../assets/right.png) no-repeat center 0;
-  background-size: 100% 100px;
-}
-
-
-.rightTop{
-  width: 100%;
-  height: 91px;
-  background: url(../../assets/hot.png) no-repeat center 0;
-  background-size: 100% 91px;
-  border-bottom: solid 1px #e1e1e1;
-}
-
-.rightBot{
-  width: 100%;
-  height: 91px;
-  background: url(../../assets/haoli.png) no-repeat center 0;
-  background-size: 100% 91px;
-}
-
 
 .title{
   width:100px;
   height:34px;
-  font-size:24px;
   font-family:PingFang-SC-Heavy;
   font-weight:normal;
   color:rgba(4,4,4,1);
   line-height:34px;
+
+
+  text-align: center;
+  color:#D60B0B;
+  font-size: 15px;
+
+  background-color: #79F29F;
 }
 
-.localLeft{
-  width: 50%;
-  height: 182px;
-  background: url(../../assets/left.png) no-repeat center 0;
-  background-size: 100% 182px;
-  margin-right: 2px;
-}
+
 
 .product_list_container{
   display: flex;
@@ -118,9 +70,11 @@
   padding: 0 15px 15px 15px;
 }
 
-.product{
+:global(.product){
   width: 50%;
   height: 263px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .p_img{
@@ -141,8 +95,14 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 5px  15px 0px 5px;
+  padding: 5px  5px 0px 5px;
   box-sizing: border-box;
+}
+
+.p_footer_left{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .p_footer_sale{
@@ -153,6 +113,40 @@
 .p_hot{
   background-color: #FFFFFF;
   font-size: 18px;
-  padding: 20px 0 0px 20px;
+  padding: 20px 0 10px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: bold;
 }
 
+.p_hot_left{
+  width: 4px;
+  background-color: #cc2636;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.hot_sell_price_left_zero{
+  width:35px;
+  height:15px;
+  line-height:15px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 10px;
+  background: #cc2636;
+  color:#FFFFFF;
+  margin-right:5px;
+  padding:2px 0;
+  //font-style: italic;
+}
+
+:global(.user_info_btn){
+
+}
+
+.arrow{
+  position: absolute;
+  right: 20px;
+  top: 50px;
+}

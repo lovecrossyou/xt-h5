@@ -4,10 +4,11 @@ import styles from './page.less';
 import { routerRedux } from 'dva/router';
 import { PriceLabel } from './components/PriceLabel';
 import { ActivityIndicator } from './components/ActivityIndicator';
+import { Carousel ,Icon} from 'antd-mobile';
 
 // 积分商城
 const UserInfo = ({ userInfo }) => {
-  return <div style={{
+  return <div className='user_info_btn' style={{
     height: '82px',
     display: 'flex',
     flexDirection: 'row',
@@ -24,16 +25,33 @@ const UserInfo = ({ userInfo }) => {
         <div style={{ color: '#AEAAAA', fontSize: '12px', lineHeight: '34px' }}>普通会员</div>
       </div>
     </div>
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <div style={{ display: 'flex', flexDirection: 'row',alignItems:'center' }}>
       <div>{userInfo.accountAllAmount}</div>
       <div style={{ color: '#040404' }}>积分</div>
+
+      <div style={{paddingLeft:'10px'}}>
+        <Icon type='right' color='#040404'/>
+      </div>
     </div>
+
   </div>;
 };
 
+
+const Banner_New = ()=>{
+  return (
+    <Carousel
+      autoplay={true}
+      infinite
+    >
+      <Banner/>
+    </Carousel>
+  )
+}
+
 const Banner = () => {
   return <div className={styles.banner}>
-    <img className={styles.banner_img} src="http://static.tuexing.com/guanggaotu_xiangyun.jpg" alt=""/>
+    <img className={styles.banner_img} src='http://static.tuexing.com/ad/WechatIMG863.jpeg' alt=""/>
   </div>;
 };
 
@@ -50,25 +68,27 @@ const Item = ({ item, onClick }) => {
       borderRadius: '16px',
     }}/>
     <div>
-      <div className={styles.title} style={{ textAlign: 'center', color: '#D60B0B', fontSize: '15px' }}>{item.price}M币
-      </div>
+      <div className={styles.title}>{item.price}M币</div>
       <div style={{ textAlign: 'center', height: '24px', lineHeight: '24px', fontSize: '12px' }}>{item.simpleName}</div>
     </div>
   </div>;
 };
 
 
-const Product = ({data,onClick})=>{
+const Product = ({data})=>{
   return <div
-    className={styles.product}
-    onClick={()=>{
-      onClick(data);
-    }}>
+    productid={data.id}
+    className='product'
+  >
     <img src={data.headImage} alt="" className={styles.p_img}/>
     <div className={styles.p_title}>{data.simpleName}</div>
+
     <div className={styles.p_footer}>
+      <div className={styles.p_footer_left}>
+        <div className={styles.hot_sell_price_left_zero}>热门</div>
       <PriceLabel prefix='' price={data.price} suffix='M币'/>
-      <div className={styles.p_footer_sale}>已兑换{data.saleAmount}份</div>
+      </div>
+      <div className={styles.p_footer_sale}>已售{data.saleAmount}份</div>
     </div>
   </div>
 }
@@ -96,12 +116,16 @@ class Points extends React.Component {
 
 
   render() {
-    const { guestLikeResult, userInfo } = this.props.store;
+    const { guestLikeResult, userInfo ,adList} = this.props.store;
     return <div style={{ backgroundColor: '#f5f5f5' }}>
-      <UserInfo userInfo={userInfo}/>
-      <Banner/>
+      <UserInfo
+        userInfo={userInfo}/>
+      <Banner_New datas={adList}/>
       <div>
-        <div className={styles.p_hot}>热门兑换</div>
+        <div className={styles.p_hot}>
+          <div className={styles.p_hot_left}/>
+          <div>热门兑换</div>
+        </div>
         <ProductList
           onClick={this.onClick}
           products={guestLikeResult}/>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'dva';
-import {List,Button,InputItem,Picker} from 'antd-mobile';
+import {List,Button,InputItem,Picker,Toast} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { routerRedux } from 'dva/router';
 
@@ -18,6 +18,22 @@ class AddressEdit extends React.Component{
 
   onCreate = ()=>{
     this.props.form.validateFields((error, params) => {
+
+      if(params.recievName==undefined){
+        Toast.info('请输入收件人');
+        return ;
+      }
+
+      if(params.phoneNum==undefined){
+        Toast.info('请输入电话号码');
+        return ;
+      }
+
+      if(params.detailAddress==undefined){
+        Toast.info('请输入详细地址信息');
+        return ;
+      }
+
       params.districtAddress = params.districtAddress.toString();
       params.isDefault = 1 ;
       params.id = '' ;
@@ -34,6 +50,23 @@ class AddressEdit extends React.Component{
 
   onUpdate = ()=>{
     this.props.form.validateFields((error, params) => {
+
+      if(params.recievName==undefined){
+        Toast.info('请输入收件人');
+        return ;
+      }
+
+      if(params.phoneNum==undefined){
+        Toast.info('请输入电话号码');
+        return ;
+      }
+
+      if(params.detailAddress==undefined){
+        Toast.info('请输入详细地址信息');
+        return ;
+      }
+
+
       const editAddress = this.props.store.activeAddress ;
       params.districtAddress = params.districtAddress.toString();
       params.isDefault = 1 ;

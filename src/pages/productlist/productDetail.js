@@ -45,7 +45,6 @@ class ProductDetail extends React.Component {
         <div>
           <div className={styles.price}>{activeItem.price}</div>
           <div className={styles.label}>积分</div>
-          <div className={styles.market}>市场参考价：{salePrice}元</div>
         </div>
       </div>
       <div className={styles.descWrapper}>商品描述</div>

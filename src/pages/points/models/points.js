@@ -1,6 +1,5 @@
 import {setAccessToken} from "../../../utils/authority";
-import {queryUserInfo} from "../services/points";
-import {queryProductList} from "../../productlist/services/productlist";
+import { queryAdList, queryProductList, queryUserInfo } from '../services/points';
 import config from '../../../utils/config';
 
 const mockToken = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwiaWF0IjoxNTM4MDU2NDQ2LCJzdWIiOiJEWjAwMDAxMTMwIn0.cZ6iiE42AMTrQNuYXWejm8XaTo3sxR87-pBmgj04CmY'
@@ -14,6 +13,7 @@ export default {
     guestLikeResult:[],
     hotResult:[],
     prefectResult:[],
+    adList:[]
   },
 
   subscriptions: {
@@ -39,7 +39,7 @@ export default {
             type: 'global/setTitle', payload: {
               text: "积分商城"
             }
-          })
+          });
         }
       });
     },
@@ -49,24 +49,30 @@ export default {
     * fetch({payload}, {call, put}) {
       const response = yield call(queryUserInfo, payload);
       yield put({type: 'save', payload: response.data});
+      const response_ad = yield call(queryAdList, payload);
+      yield put({type: 'saveList', payload: response_ad.data});
     },
 
 
     * loadData({payload}, {call, put}) {
-      const [guestLikeResult] = yield [
-        call(queryProductList, {
+      const guestLikeResult = yield call(queryProductList, {
           "page": 1,
           "pageSize": 20,
           "category": "guess_like"
-        }),
-      ];
+        });
 
       yield put({
         type: 'saveData', payload: {
           guestLikeResult:guestLikeResult.data.content,
         }
       });
-    }
+    },
+
+    // banner轮播
+    * adList({payload}, {call, put}) {
+      const response = yield call(queryAdList, payload);
+      yield put({type: 'saveList', payload: response.data});
+    },
   },
 
 
@@ -82,6 +88,12 @@ export default {
       return {
         ...state,
         guestLikeResult: action.payload.guestLikeResult
+      }
+    },
+    saveList(state,action){
+      return {
+        ...state,
+        adList:action.payload
       }
     }
   }

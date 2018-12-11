@@ -13,3 +13,19 @@
   color: white;
   margin: 0;
 }
+
+.nav{
+  background-color: #cc2636;
+  height:64px;
+  position:fixed;
+  padding-top: 20px;
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  box-sizing: border-box;
+}
+
+.container{
+  /*padding-top: 64px;*/
+}

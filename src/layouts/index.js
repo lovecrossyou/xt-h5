@@ -12,15 +12,14 @@ const {openPages } = config;
 const Layout = props => {
   return <div> {props.children}</div>;
 
-  if (openPages && openPages.includes(props.pathname)) {
-    return <div> {props.children}</div>;
-  }
+  // if (openPages && openPages.includes(props.pathname)) {
+  //   return <div> {props.children}</div>;
+  // }
   return (
-    <div>
+    <div className={styles.container}>
       <NavBar
         mode="dark"
-        className={styles.barColor}
-        style={{ backgroundColor: "#cc2636",height:'50px' }}
+        className={styles.nav}
         icon={
           (props.pathname === "/main" || props.pathname === "/") ?null: (
             <Icon type="left" size={'lg'}/>
