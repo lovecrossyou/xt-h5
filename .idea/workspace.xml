@@ -2,40 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ccb6bfd-d748-4f40-a7f1-510e29b4ae1a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/dev-page.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/eat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/other.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/right.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/yay.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/404.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/404.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/address/AddressEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/address/AddressEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/document.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/document.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/components/Example.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/components/Example.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/models/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/page.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/page.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/services/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/points/components/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/points/components/page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/points/models/points.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/points/models/points.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/points/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/points/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/points/page.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/points/page.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/points/services/points.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/points/services/points.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/productlist/productDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/productlist/productDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/shoppingcart/models/shoppingcart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/shoppingcart/page.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/shoppingcart/page.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/shoppingcart/services/shoppingcart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/authority.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/authority.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/config.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -87,7 +54,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/points/models/points.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-50">
@@ -120,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/productlist/productDetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="41" column="11" lean-forward="true" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+            <state relative-caret-position="467">
+              <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
             </state>
           </provider>
         </entry>
@@ -430,12 +397,12 @@
       <workItem from="1543757260251" duration="4617000" />
       <workItem from="1543840097719" duration="521000" />
       <workItem from="1543842839062" duration="2000" />
-      <workItem from="1544534304085" duration="2787000" />
+      <workItem from="1544534304085" duration="3333000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87361000" />
+    <option name="totallyTimeSpent" value="87907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -450,7 +417,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4988086" visible="true" weight="0.27157003" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4988086" weight="0.6619519" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -458,7 +425,7 @@
       <window_info anchor="bottom" id="Console" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="DB Execution Console" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.70532167" weight="0.18670438" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.70532167" visible="true" weight="0.2970297" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.29467833" side_tool="true" weight="0.42857143" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="13" />
@@ -707,16 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/points/models/points.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-50">
-          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/points/page.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -729,8 +686,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/productlist/productDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="41" column="11" lean-forward="true" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+        <state relative-caret-position="467">
+          <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/points/models/points.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-50">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
